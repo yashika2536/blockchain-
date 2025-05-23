@@ -1,0 +1,124 @@
+// 1. Voting System with Multiple Candidates
+contract VotingSystem {
+    struct Candidate {
+        string name;
+        uint voteCount;
+    }
+
+    address public owner;
+    mapping(address => bool) public hasVoted;
+    Candidate[] public candidates;
+
+    constructor(string[] memory candidateNames) {
+        owner = msg.sender;
+        for (uint i = 0; i < candidateNames.length; i++) {
+            candidates.push(Candidate(candidateNames[i], 0));
+        }
+    }
+
+    function vote(uint candidateIndex) external {
+        require(!hasVoted[msg.sender], "Already voted");
+        require(candidateIndex < candidates.length, "Invalid candidate");
+
+        hasVoted[msg.sender] = true;
+        candidates[candidateIndex].voteCount++;
+    }
+
+    function getCandidates() external view returns (Candidate[] memory) {
+        return candidates;
+// 2. Student Record System
+contract StudentRecords {
+    struct Student {
+        string name;
+        uint rollNumber;
+    }
+
+    Student[] public students;
+
+    function addStudent(string calldata name, uint rollNumber) external {
+        students.push(Student(name, rollNumber));
+    }
+
+    function getStudent(uint index) external view returns (Student memory) {
+        require(index < students.length, "Invalid index");
+        return students[index];
+    }// 3. Owner-Only Access Modifier
+contract OwnerOnly {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not the owner");
+        _;
+    }
+
+    function sensitiveFunction() external onlyOwner {
+        // Only owner can call this
+    }
+}
+
+// 4. Donation Tracker
+contract DonationTracker {
+    address public owner;
+    mapping(address => uint) public donations;
+    address[3] public topDonors;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function donate() external payable {
+        require(msg.value > 0, "No Ether sent");
+        donations[msg.sender] += msg.value;
+        updateTopDonors(msg.sender);
+    }
+
+    function updateTopDonors(address donor) internal {
+        for (uint i = 0; i < 3; i++) {
+            if (donations[donor] > donations[topDonors[i]]) {
+                for (uint j = 2; j > i; j--) {
+                    topDonors[j] = topDonors[j - 1];
+                }
+                topDonors[i] = donor;
+                break;
+            }
+        }
+    }
+
+    function getTopDonors() external view returns (address[3] memory) {
+        return topDonors;
+    }
+}
+
+// 5. Simple Auction System
+contract SimpleAuction {
+    address public highestBidder;
+    uint public highestBid;
+
+    function bid() external payable {
+        require(msg.value > highestBid, "Bid too low");
+        payable(highestBidder).transfer(highestBid);
+        highestBid = msg.value;
+        highestBidder = msg.sender;
+    }
+}
+
+// 6. Ether Splitter
+contract EtherSplitter {
+    address payable[3] public recipients;
+
+    constructor(address payable[3] memory _recipients) {
+        recipients = _recipients;
+    }
+
+    receive() external payable {
+        uint splitAmount = msg.value / 3;
+        for (uint i = 0; i < 3; i++) {
+            recipients[i].transfer(splitAmount);
+        }
+    }
+}
+
