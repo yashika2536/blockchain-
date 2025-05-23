@@ -1,0 +1,53 @@
+metamask-browser-setup/
+├── README.md
+├── INSTALLATION.md
+├── usage/
+│   └── connect_dapp.txt
+├── screenshots/
+│   ├── metamask-extension.png (will be generated)
+│   ├── wallet-setup.png (will be generated)
+├── .gitignore
+READ ME 
+# Metamask Browser Setup
+
+This project guides you through installing and using the Metamask crypto wallet browser extension. Learn how to set up a wallet and connect it to decentralized apps (DApps).
+
+## Contents
+
+- [Installation](INSTALLATION.md)
+- [Usage Guide](usage/connect_dapp.txt)
+- Screenshots of the setup process
+INSTALLATION 
+# Installing Metamask Browser Extension
+
+## Step 1: Install Metamask
+
+1. Visit: https://metamask.io
+2. Click "Download"
+3. Choose your browser (Chrome, Firefox, Edge)
+4. Add the extension to your browser
+
+## Step 2: Set Up Your Wallet
+
+1. Click the Metamask icon in the browser toolbar
+2. Click "Get Started"
+3. Choose "Create a Wallet"
+4. Set a strong password
+5. Write down your Secret Recovery Phrase
+
+### 🚨 WARNING:
+Never share your recovery phrase. Anyone with it can access your wallet.
+
+## Step 3: Done!
+
+You’re ready to connect to DApps!
+USAGE
+How to Connect Metamask to a DApp
+
+1. Open a DApp like https://uniswap.org
+2. Click "Connect Wallet"
+3. Choose "Metamask"
+4. Your Metamask extension will pop up
+5. Approve the connection
+6. You're now connected!
+
